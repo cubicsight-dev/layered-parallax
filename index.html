@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="hero">
+        <div class="layer layer1 parallax-movement" data-move="0.10"></div>
+        <div class="layer layer2 parallax-movement" data-move="0.20"></div>
+        <div class="layer layer3 parallax-movement" data-move="0.50"></div>
+        <div class="layer layer4 parallax-movement" data-move="0.80"></div>
+        <div class="layer layer5 parallax-movement" data-move="0.85"></div>
+        <div class="layer layer6 parallax-movement" data-move="1.00"></div>
+    </section>
+    <section class="bottom-content" style="height: 1000px; background-color: brown;">
+        <div class="container"></div>
+    </section>
+</body>
+
+<script>
+    window.addEventListener('scroll', (e) => {
+        const getParallaxBg = document.querySelectorAll('.parallax-movement') ?? []
+        const top = window.pageYOffset
+        getParallaxBg.forEach(elem => {
+            const elemMoveAmount = Number(elem.getAttribute('data-move'))
+            const translate = `translate3d(0, ${-(top * elemMoveAmount)}px, 0)`
+            elem.style['-webkit-transform'] = translate
+            elem.style['-moz-transform'] = translate
+            elem.style['-ms-transform'] = translate
+            elem.style['-o-transform'] = translate
+            elem.style.transform = translate
+            // console.log(translate)
+        })
+    })
+</script>
+</html>
